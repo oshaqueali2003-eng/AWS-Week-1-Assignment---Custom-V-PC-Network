@@ -42,3 +42,8 @@ Design and implement a segmented AWS network using multiple Availability Zones, 
 1. Terminated both EC2 instances.
 2. Deleted Security Groups.
 3. Deleted the VPC (which automatically removed subnets, route tables, IGW, and endpoints).
+
+  ## 🔧 Troubleshooting & Key Learnings
+*   **VPC Tenancy Issue:** Initially, the VPC was created with "Dedicated" tenancy, which prevented Free Tier instances from launching. This was resolved by using the AWS CLI to modify the VPC tenancy back to `default`.
+*   **Private Instance Access:** Since the private instance had no public IP, direct SSH failed. I resolved this by using the Public instance as a Bastion Host to securely tunnel into the private instance.
+*   **Security Group Rules:** Ensured SSH access was restricted to specific IPs/CIDRs rather than `0.0.0.0/0` to follow the principle of least privilege.
